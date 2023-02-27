@@ -1,6 +1,6 @@
 {
   "name": "uk-fp",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "functional-programming-util",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -24,12 +24,12 @@
     "typescript": "^4.9.5"
   },
   "bugs": {
-    "url": "https://github.com/Yanguk/simple-fp/issues"
+    "url": "https://github.com/Yanguk/uk-fp/issues"
   },
-  "homepage": "https://github.com/Yanguk/simple-fp#readme",
+  "homepage": "https://github.com/Yanguk/uk-fp#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Yanguk/simple-fp.git"
+    "url": "https://github.com/Yanguk/uk-fp.git"
   },
   "prepublishOnly": "npm run build"
 }

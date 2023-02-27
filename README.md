@@ -5,13 +5,10 @@ Functional programming util
 $ npm install uk-fp
 ```
 
-
 # API
 ### Function
   * pipe
-  * asyncPipe
   * go
-  * asyncGo
 
 ### Monad Pattern
   * Maybe

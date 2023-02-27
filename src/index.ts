@@ -1,3 +1,3 @@
-export { go, asyncGo } from './function/go';
-export { pipe, asyncPipe } from './function/pipe';
-export { default as Maybe } from './monad/Maybe';
+export { default as go } from './common/go';
+export { default as pipe } from './common/pipe';
+export { default as Maybe } from './common/Maybe';

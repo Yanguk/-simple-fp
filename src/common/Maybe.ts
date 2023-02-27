@@ -1,7 +1,12 @@
 interface Option<T> {
   unwrap(): T;
+  unwrapOr(def: T): T;
   expect(err: string | Error): T;
+
   isSome(): boolean;
+  isNone(): boolean;
+
+  andThen<R>(f: (v: T) => Option<R>): Option<R>;
   map<U>(f: (a: T) => U): Option<U>;
 }
 
@@ -10,7 +15,7 @@ export default class Maybe {
 
   static wrap<T>(value: T): Option<NonNullable<T>> {
     if (value == null) {
-      return new None<NonNullable<T>>();
+      return new None<any>();
     }
 
     return new Some<NonNullable<T>>(value);
@@ -28,6 +33,10 @@ class Some<T> implements Option<T> {
     return this.value;
   }
 
+  unwrapOr(_v: T): T {
+    return this.value;
+  }
+
   expect(_err: string | Error): T {
     return this.value;
   }
@@ -36,7 +45,15 @@ class Some<T> implements Option<T> {
     return true;
   }
 
-  map<U>(f: (a: T) => U): Option<U> {
+  isNone(): boolean {
+    return false;
+  }
+
+  andThen<R>(f: (v: T) => Option<R>): Option<R> {
+    return f(this.value);
+  }
+
+  map<R>(f: (a: T) => R): Option<R> {
     return new Some(f(this.value));
   }
 }
@@ -64,7 +81,19 @@ class None<T> implements Option<T> {
     return false;
   }
 
+  isNone(): boolean {
+    return true;
+  }
+
+  andThen<R>(f: (v: T) => Option<R>): Option<R> {
+    return new None();
+  }
+
   map<U>(f: (a: T) => U): Option<U> {
-    return new None<U>();
+    return new None();
+  }
+
+  unwrapOr(v: T): T {
+    return v;
   }
 }

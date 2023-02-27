@@ -1,6 +1,6 @@
 {
   "name": "uk-fp",
-  "version": "0.0.5",
+  "version": "0.0.11",
   "description": "functional-programming-util",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,6 +12,7 @@
   "keywords": [
     "typescript, monad, functional"
   ],
+  "type": "module",
   "author": "Yanguk <heo.yanguk@gmail.com>",
   "license": "ISC",
   "devDependencies": {

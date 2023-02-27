@@ -1,4 +1,4 @@
-# simple-fp
+# uk-fp
 Functional programming util
 
 ```bash

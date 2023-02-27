@@ -1,5 +1,10 @@
 # simple-fp
-functional programming util
+Functional programming util
+
+```bash
+$ npm install uk-fp
+```
+
 
 # API
 ### Function

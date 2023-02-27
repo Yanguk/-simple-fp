@@ -10,8 +10,8 @@ $ npm install uk-fp
   * pipe
   * go
 
-### Monad Pattern
-  * Maybe
+### Rusty Type
+> https://doc.rust-lang.org/std/option/enum.Option.html
+  * Option
     * Some
     * None
-

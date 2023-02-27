@@ -1,25 +1,24 @@
-interface Option<T> {
-  unwrap(): T;
-  unwrapOr(def: T): T;
-  expect(err: string | Error): T;
-
-  isSome(): boolean;
-  isNone(): boolean;
-
-  andThen<R>(f: (v: T) => Option<R>): Option<R>;
-  map<U>(f: (a: T) => U): Option<U>;
-}
-
-export default class Maybe {
+abstract class Option<T> {
   private constructor() {}
 
   static wrap<T>(value: T): Option<NonNullable<T>> {
     if (value == null) {
-      return new None<any>();
+      return new None<NonNullable<T>>();
     }
 
     return new Some<NonNullable<T>>(value);
   }
+
+  abstract unwrap(): T;
+  abstract unwrapOr(def: T): T;
+
+  abstract expect(err: string | Error): T;
+
+  abstract isSome(): boolean;
+  abstract isNone(): boolean;
+
+  abstract andThen<R>(f: (v: T) => Option<R>): Option<R>;
+  abstract map<U>(f: (a: T) => U): Option<U>;
 }
 
 class Some<T> implements Option<T> {
@@ -97,3 +96,5 @@ class None<T> implements Option<T> {
     return v;
   }
 }
+
+export default Option;

@@ -1,11 +1,10 @@
 {
   "name": "uk-fp",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "functional-programming-util",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "start": "nodemon ts-node index.ts",
     "test": "jest",
     "build": "tsc"
   },

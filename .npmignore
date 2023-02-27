@@ -1,6 +1,5 @@
 src
-index.ts
-.github/
+.github
 .DS_Store
 .git
 babel.config.json

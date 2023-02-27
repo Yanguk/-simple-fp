@@ -4,6 +4,7 @@
     "module": "commonjs" /* Specify what module code is generated. */,
     "declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
     "strict": true,
+    "rootDir": "src",
     "outDir": "dist" /* Specify an output folder for all emitted files. */
   },
   "include": ["src/**/*"],

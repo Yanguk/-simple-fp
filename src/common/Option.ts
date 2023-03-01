@@ -17,9 +17,10 @@ abstract class Option<T> {
   abstract isSome(): boolean;
   abstract isNone(): boolean;
 
+  abstract isSomeAnd(f: (v: T) => boolean): boolean;
+
   abstract andThen<R>(f: (v: T) => Option<R>): Option<R>;
   abstract map<U>(f: (a: T) => U): Option<U>;
-
   abstract inspect(f: (v: T) => void): Option<T>;
 }
 
@@ -48,6 +49,10 @@ export class Some<T> implements Option<T> {
 
   isNone(): boolean {
     return false;
+  }
+
+  isSomeAnd(f: (v: T) => boolean): boolean {
+    return f(this.value);
   }
 
   andThen<R>(f: (v: T) => Option<R>): Option<R> {
@@ -97,6 +102,10 @@ export class None<T> implements Option<T> {
 
   isNone(): boolean {
     return true;
+  }
+
+  isSomeAnd(f: (v: T) => boolean): boolean {
+    return false;
   }
 
   andThen<R>(f: (v: T) => Option<R>): Option<R> {

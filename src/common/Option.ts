@@ -19,9 +19,11 @@ abstract class Option<T> {
 
   abstract andThen<R>(f: (v: T) => Option<R>): Option<R>;
   abstract map<U>(f: (a: T) => U): Option<U>;
+
+  abstract inspect(f: (v: T) => void): Option<T>;
 }
 
-class Some<T> implements Option<T> {
+export class Some<T> implements Option<T> {
   private value: T;
 
   constructor(v: T) {
@@ -55,9 +57,22 @@ class Some<T> implements Option<T> {
   map<R>(f: (a: T) => R): Option<R> {
     return new Some(f(this.value));
   }
+
+  inspect(f: (v: T) => void): Option<T> {
+    if (this.value instanceof Object) {
+      // todo: now just shallow copy;;
+      const value = Array.isArray(this.value) ? [...this.value] : { ...this.value };
+
+      f(value as T);
+    } else {
+      f(this.value);
+    }
+
+    return new Some(this.value);
+  }
 }
 
-class None<T> implements Option<T> {
+export class None<T> implements Option<T> {
   unwrap(): T {
     const error = new Error('None.unwrap()');
     error.name = 'MaybeError';
@@ -94,6 +109,10 @@ class None<T> implements Option<T> {
 
   unwrapOr(v: T): T {
     return v;
+  }
+
+  inspect(f: (v: T) => void): Option<T> {
+    return new None();
   }
 }
 

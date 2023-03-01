@@ -1,6 +1,6 @@
 {
   "name": "uk-fp",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "functional-programming-util",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -64,14 +64,7 @@ export class Some<T> implements Option<T> {
   }
 
   inspect(f: (v: T) => void): Option<T> {
-    if (this.value instanceof Object) {
-      // todo: now just shallow copy;;
-      const value = Array.isArray(this.value) ? [...this.value] : { ...this.value };
-
-      f(value as T);
-    } else {
-      f(this.value);
-    }
+    f(this.value);
 
     return new Some(this.value);
   }

@@ -1,28 +1,24 @@
-import { Option } from '../index';
+import { None, Option, Some, range, go } from '../index';
+import arr from '../common/arrayUtil';
 
 describe('* pipe 함수 테스트', () => {
-  const maybeSome = (() => {
+  const getMaybeSome = (): Option<number> => {
     const number = Math.random();
 
     if (number * 10 < 5) {
-      return null;
+      return new None();
     }
 
-    return number;
-  })()
+    return new Some(number);
+  };
 
   it('option test', () => {
-    const target = Option.wrap(maybeSome);
-
-    const a = target.map((a) => a + 2);
-
-    if (a.isSome()) {
-      expect(a.unwrap()).toBeLessThan(10);
-    }
-
-    if (a.isNone()) {
-      expect(a.unwrapOr(123)).toBe(123);
-    }
+    go(
+      range(20),
+      arr.map(getMaybeSome),
+      arr.map((option) => option.map((a) => a + 2)),
+      arr.forEach((option) => option.inspect((a) => expect(a).toBeLessThan(10)))
+    );
   });
 
   it('타입추론 테스트', () => {});

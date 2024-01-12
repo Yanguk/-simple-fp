@@ -1,8 +1,8 @@
 import { None, Option, Some, range, go } from '../index';
-import arr from '../common/arrayUtil';
+import { map, forEach }from '../common/arrayUtil';
 
 describe('* pipe 함수 테스트', () => {
-  const getMaybeSome = (): Option<number> => {
+  const maybeSome = (): Option<number> => {
     const number = Math.random();
 
     if (number * 10 < 5) {
@@ -15,9 +15,9 @@ describe('* pipe 함수 테스트', () => {
   it('option test', () => {
     go(
       range(20),
-      arr.map(getMaybeSome),
-      arr.map((option) => option.map((a) => a + 2)),
-      arr.forEach((option) => option.inspect((a) => expect(a).toBeLessThan(10)))
+      map(maybeSome),
+      map((option) => option.map((a) => a + 2)),
+      forEach((option) => option.inspect((a) => expect(a).toBeLessThan(10)))
     );
   });
 

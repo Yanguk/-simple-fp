@@ -13,10 +13,3 @@ export const filter =
   (a: T[]): T[] =>
     a.filter(f);
 
-const arr = {
-  map,
-  forEach,
-  filter,
-};
-
-export default arr;

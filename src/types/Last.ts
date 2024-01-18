@@ -5,7 +5,6 @@ export type Last<T extends any[]> =
         : Last<Rest>
     : never;
 
-
 /**
  *
  * type test = Last<[3, 2, 1]>; // 1
